@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="tfsManager" class="com.taobao.common.tfs.DefaultTfsManager" init-method="init">
+        <!-- 整个进程中系统最多等待多少个请求,取决于你有多少个线程并发的请求TFS -->
+        <property name="maxWaitThread">
+            <value>100</value>
+        </property>
+        <!-- 单个请求最大的等待时间(ms) 超过这个时间放弃这次请求-->
+        <property name="timeout">
+            <value>2000</value>
+        </property>
+        <!-- Tfs master nameserver ip address -->
+        <property name="nsip">
+            <value>192.168.64.136:8100</value>
+        </property>
+        <!-- TFS 集群的编号,这个编号只是一种参考,系统初始化的时候会从ns上取,取不到才用本地设置的.!-->
+        <property name="tfsClusterIndex">
+            <value>1</value>
+        </property>
+        <!-- TFS在读取文件的时候会缓存block所在的数据服务器ip,这个参数配置了最多缓存的记录个数!-->
+        <property name="maxCacheItemCount">
+            <value>10000</value>
+        </property>
+        <!-- 上一项缓存最大有效的时间(ms)!-->
+        <property name="maxCacheTime">
+            <value>5000</value>
+        </property>
+    </bean>
+</beans>
