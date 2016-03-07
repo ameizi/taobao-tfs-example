@@ -1,4 +1,6 @@
-# TFS的nginx模块配置
+# nginx-tfs安装及配置
+
+https://github.com/alibaba/nginx-tfs
 
 ### 1. 安装依赖库
 
@@ -16,7 +18,13 @@ sudo make install
 sudo ldconfig
 ```
 
-### 3. 编译安装nginx
+### 3. 克隆nginx-tfs
+
+```bash
+ubuntu@s1:~/apps$ git clone https://github.com/alibaba/nginx-tfs.git
+```
+
+### 4. 编译安装nginx
 
 ```bash
 ./configure --prefix=/home/ubuntu/apps/nginx --add-module=/home/ubuntu/apps/nginx-tfs --with-http_ssl_module
@@ -24,7 +32,7 @@ make
 make install
 ```
 
-### 4. 修改nginx.conf
+### 5. 修改nginx.conf
 
 ```
 #user  nobody;
@@ -165,20 +173,21 @@ http {
 }
 ```
 
-### 5. 启动nginx
+### 6. 启动nginx
 
 ```bash
 ubuntu@s1:~/apps/nginx$ sudo sbin/nginx
 ubuntu@s1:~/apps/nginx$ ps -ef | grep nginx
 ```
 
-### 6. 访问资源
+### 7. 访问资源
 
 http://192.168.64.136:7500/v1/tfs/T1naJTByhT1R4cSCrK
 
 这里值得注意的是端口后面的url一定是/v1/,tfs三个字符可以用任意字符代替。例如一个空格字符，或者aaaa,bbb等，但至少需要存在一个字符。
 
-### 7. 参考文档
+### 8. 参考文档
 
 http://ylw6006.blog.51cto.com/470441/1558631
+
 https://github.com/alibaba/nginx-tfs
